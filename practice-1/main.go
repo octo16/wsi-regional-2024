@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	_ "os"
+	"os"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -16,9 +16,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
 	"github.com/redis/go-redis/v9"
-
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 
 	"crypto/tls"
 	"crypto/x509"
@@ -109,7 +106,7 @@ func cache(w http.ResponseWriter, r *http.Request) {
 		},
 	})
 
-	state, err := rdb.Ping(context.Background()).Result()
+	_, err := rdb.Ping(context.Background()).Result()
 	if err != nil {
 		panic(err)
 	}
