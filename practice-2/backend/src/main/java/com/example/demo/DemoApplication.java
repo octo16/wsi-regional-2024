@@ -23,6 +23,11 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	
+	@GetMapping("/healthz")
+	public String healthz() {
+		return "ok";
+	}
+	
 	@GetMapping("/user")
 	public Map<String,Object> user(@RequestParam(value = "name") String name) {
 		Map<String, Object> response = new HashMap<>();
